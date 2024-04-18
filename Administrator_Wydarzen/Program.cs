@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Administrator_Wydarzen.Views;
+using Administrator_Wydarzen.Models;
+using Administrator_Wydarzen.Presenters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +19,10 @@ namespace Administrator_Wydarzen
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            IWydarzenieView view = new Form1();
+            IWydarzenieRepository repository = new WydarzenieRepository();
+            new WydarzeniePresenter(view, repository);
+            Application.Run((Form) view);
         }
     }
 }

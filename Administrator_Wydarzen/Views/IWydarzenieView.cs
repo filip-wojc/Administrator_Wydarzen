@@ -12,8 +12,10 @@ namespace Administrator_Wydarzen.Views
         string Title { get; set; }
         string Description { get; set; }
         DateTime Date { get; set; }
-        string Typ { get; set; }
+        string Type { get; }
         string Priority { get;}
+        string SortType { get; }
+        string FiltrType { get; }
 
         event EventHandler AddWydarzenie;
         event EventHandler DeleteWydarzenie;
@@ -22,7 +24,8 @@ namespace Administrator_Wydarzen.Views
         event EventHandler SortWydarzenie;
         event EventHandler FiltrWydarzenie;
 
-        bool SetErrorTextBox();
+        bool SetErrorTitleBox();
+        bool SetErrorDescrBox();
         bool SetErrorTypeBox();
         bool SetErrorPriorityBox();
 
@@ -30,5 +33,6 @@ namespace Administrator_Wydarzen.Views
         bool SetErrorFiltrBox();
 
         void DataGridUpdate(Wydarzenie wydarzenie);
+        List<int> DataGridDeleteRows();
     }
 }
