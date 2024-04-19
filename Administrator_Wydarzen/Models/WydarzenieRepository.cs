@@ -27,23 +27,18 @@ namespace Administrator_Wydarzen.Models
             _repositoryList.RemoveAt(index);
         }
 
-        public IEnumerable<Wydarzenie> GetAll()
+        public void Clear()
         {
-            List<Wydarzenie> lista = new List<Wydarzenie>();
-            foreach (var w in _repositoryList)
-            {
-                lista.Add(w);
-            }
-            return lista;
+            _repositoryList.Clear();
         }
 
-        public void Serialize(IEnumerable<Wydarzenie> wydarzenia, string path)
+        public void Serialize(string path)
         {
             XmlSerializer serializer = new XmlSerializer(typeof(List<Wydarzenie>));
 
             using (StreamWriter writer = new StreamWriter(path))
             {
-                serializer.Serialize(writer, wydarzenia);
+                serializer.Serialize(writer, _repositoryList);
             }
         }
 
@@ -56,24 +51,25 @@ namespace Administrator_Wydarzen.Models
             }
         }
 
-        public IEnumerable<Wydarzenie> SortByType(IEnumerable<Wydarzenie> wydarzenia, string type)
+        public IEnumerable<Wydarzenie> SortByType(string type)
         {
-            var lista = GetAll();
+          
             if (type == "Po typie")
             {
-                return lista.OrderBy(wydarzenie => wydarzenie.Type);
+                return _repositoryList.OrderBy(wydarzenie => wydarzenie.Type).ToList();
             }
             else if (type == "Po priorytecie")
             {
-                return lista.OrderBy(wydarzenie => wydarzenie.Priority);
+                return _repositoryList.OrderBy(wydarzenie => wydarzenie.Priority).ToList();
             }
             else
             {
-                return lista.OrderBy(wydarzenie => wydarzenie.Date);
+                return _repositoryList.OrderBy(wydarzenie => wydarzenie.Date).ToList();
             }
         }
 
+
         //public IEnumerable<Wydarzenie> FiltrByType(IEnumerable<Wydarzenie> wydarzenia, string type) { }
-         
+
     }
 }

@@ -82,8 +82,8 @@ namespace Administrator_Wydarzen.Views
             get
             {
                 if (SortByDateBox.Checked) { return SortByDateBox.Text; }
-                if (SortByPrioBox.Checked) { return SortByPrioBox.Text; }
-                if (SortByTypeBox.Checked) { return SortByTypeBox.Text; }
+                else if (SortByPrioBox.Checked) { return SortByPrioBox.Text; }
+                else if (SortByTypeBox.Checked) { return SortByTypeBox.Text; }
                 return "";
             }
         }
@@ -121,6 +121,10 @@ namespace Administrator_Wydarzen.Views
              
         }
 
+        public void DataGridClear()
+        {
+            dataGridView1.Rows.Clear();
+        }
 
         public List<int> DataGridDeleteRows()
         {

@@ -19,6 +19,7 @@ namespace Administrator_Wydarzen
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
             IWydarzenieView view = new Form1();
             IWydarzenieRepository repository = new WydarzenieRepository();
             new WydarzeniePresenter(view, repository);

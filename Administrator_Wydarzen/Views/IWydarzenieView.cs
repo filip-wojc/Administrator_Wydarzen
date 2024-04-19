@@ -33,6 +33,7 @@ namespace Administrator_Wydarzen.Views
         bool SetErrorFiltrBox();
 
         void DataGridUpdate(Wydarzenie wydarzenie);
+        void DataGridClear();
         List<int> DataGridDeleteRows();
     }
 }
