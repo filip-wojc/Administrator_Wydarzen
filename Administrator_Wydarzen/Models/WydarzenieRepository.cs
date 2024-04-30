@@ -32,6 +32,11 @@ namespace Administrator_Wydarzen.Models
             _repositoryList.Clear();
         }
 
+        public IEnumerable<Wydarzenie> GetAll()
+        {
+            return _repositoryList;
+        }
+
         public void Serialize(string path)
         {
             XmlSerializer serializer = new XmlSerializer(typeof(List<Wydarzenie>));
@@ -69,7 +74,20 @@ namespace Administrator_Wydarzen.Models
         }
 
 
-        //public IEnumerable<Wydarzenie> FiltrByType(IEnumerable<Wydarzenie> wydarzenia, string type) { }
-
+        public IEnumerable<Wydarzenie> FiltrByType(string filtrText) 
+        {
+            return _repositoryList.Where(wydarzenie => wydarzenie.Type.Contains(filtrText)).ToList();
+           
+        }
+        public IEnumerable<Wydarzenie> FiltrByPrior(string filtrText)
+        {
+           return _repositoryList.Where(wydarzenie => wydarzenie.Priority.Contains(filtrText)).ToList();
+            
+        }
+        public IEnumerable<Wydarzenie> FiltrByDate(string filtrText)
+        {
+            return _repositoryList.Where(wydarzenie => wydarzenie.Date.ToShortDateString().Contains(filtrText)).ToList();
+            
+        }
     }
 }

@@ -46,10 +46,21 @@ namespace Administrator_Wydarzen.Views
                 SortWydarzenie?.Invoke(this, EventArgs.Empty);
             };
 
-            FiltrBtn.Click += (sender, e) =>
+            FiltrTypeBtn.Click += (sender, e) =>
             {
-                FiltrWydarzenie?.Invoke(this, EventArgs.Empty);
+                FiltrWydarzenieByType?.Invoke(this, EventArgs.Empty);
             };
+
+            FiltrPriorBtn.Click += (sender, e) =>
+            {
+                FiltrWydarzenieByPrior?.Invoke(this, EventArgs.Empty);
+            };
+
+            FiltrDateBtn.Click += (sender, e) =>
+            {
+                FiltrWydarzenieByDate?.Invoke(this, EventArgs.Empty);
+            };
+
         }
 
         
@@ -88,22 +99,18 @@ namespace Administrator_Wydarzen.Views
             }
         }
 
-        public string FiltrType
-        {
-            get
-            {
-                if (FiltrByDateBox.Checked) { return FiltrByDateBox.Text; }
-                if (FiltrByPriorityBox.Checked) { return FiltrByPriorityBox.Text; }
-                if (FiltrByTypeBox.Checked) { return FiltrByTypeBox.Text; }
-                return "";
-            }
-        }
+        public string FiltrType { get => FiltrTypeBox.Text; set => FiltrTypeBox.Text = value; }
+        public string FiltrPrior { get => FiltrPriorBox.Text; set => FiltrPriorBox.Text = value; }
+        public string FiltrDate { get => FiltrDateBox.Text; set => FiltrDateBox.Text = value; }
+        
         public event EventHandler AddWydarzenie;
         public event EventHandler DeleteWydarzenie;
         public event EventHandler SerializeWydarzenie;
         public event EventHandler DeserializeWydarzenie;
         public event EventHandler SortWydarzenie;
-        public event EventHandler FiltrWydarzenie;
+        public event EventHandler FiltrWydarzenieByType;
+        public event EventHandler FiltrWydarzenieByPrior;
+        public event EventHandler FiltrWydarzenieByDate;
 
         public void DataGridUpdate(Wydarzenie wydarzenie)
         {
@@ -216,19 +223,6 @@ namespace Administrator_Wydarzen.Views
             }
         }
 
-        public bool SetErrorFiltrBox()
-        {
-            var rb = new RadioButton[] { FiltrByDateBox, FiltrByPriorityBox, FiltrByTypeBox };
-            if (rb[0].Checked || rb[1].Checked || rb[2].Checked)
-            {
-                errorProvider1.SetError(rb[1], "");
-                return true;
-            }
-            else
-            {
-                errorProvider1.SetError(rb[1], "Nic nie zostało wybrane");
-                return false;
-            }
-        }
+        
     }
 }

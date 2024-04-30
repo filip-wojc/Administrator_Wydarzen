@@ -25,7 +25,9 @@ namespace Administrator_Wydarzen.Presenters
             _view.SerializeWydarzenie += SerializeWydarzenieList;
             _view.DeserializeWydarzenie += DeserializeWydarzenieList;
             _view.SortWydarzenie += SortWydarzenieToGrid;
-            //_view.FiltrWydarzenie += FiltrWydarzenieToGrid;
+            _view.FiltrWydarzenieByType += FiltrWydarzenieToGridByType;
+            _view.FiltrWydarzenieByPrior += FiltrWydarzenieToGridByPrior;
+            _view.FiltrWydarzenieByDate += FiltrWydarzenieToGridByDate;
             _wydarzenia = new List<Wydarzenie>();
             
         }
@@ -124,7 +126,96 @@ namespace Administrator_Wydarzen.Presenters
                     _repository.Add(w);
                     _view.DataGridUpdate(w);
                 }
+
             }
+        }
+
+        private void FiltrWydarzenieToGridByType(object sender, EventArgs e)
+        {
+            if (_view.FiltrType != "")
+            {
+                _wydarzenia = _repository.FiltrByType(_view.FiltrType);
+                if (_wydarzenia.Count() == 0) { return; }
+
+                _view.DataGridClear();
+
+                foreach (var w in _wydarzenia)
+                {
+                    _view.DataGridUpdate(w);
+                }
+            }
+            
+            else
+            {
+                _wydarzenia = _repository.GetAll();
+                _view.DataGridClear();
+                foreach (var w in _wydarzenia)
+                {
+                    _view.DataGridUpdate(w);
+                }
+            }
+            
+
+        }
+
+        private void FiltrWydarzenieToGridByPrior(object sender, EventArgs e)
+        {
+
+
+            if (_view.FiltrPrior != "")
+            {
+                _wydarzenia = _repository.FiltrByPrior(_view.FiltrPrior);
+                if (_wydarzenia.Count() == 0) { return; }
+
+                _view.DataGridClear();
+
+                foreach (var w in _wydarzenia)
+                {
+                    _view.DataGridUpdate(w);
+                }
+            }
+
+            else
+            {
+                _wydarzenia = _repository.GetAll();
+                _view.DataGridClear();
+                foreach (var w in _wydarzenia)
+                {
+                    _view.DataGridUpdate(w);
+                }
+            }
+
+
+
+        }
+
+        private void FiltrWydarzenieToGridByDate(object sender, EventArgs e)
+        {
+
+            if (_view.FiltrDate != "")
+            {
+                _wydarzenia = _repository.FiltrByDate(_view.FiltrDate);
+                if (_wydarzenia.Count() == 0) { return; }
+
+                _view.DataGridClear();
+
+                foreach (var w in _wydarzenia)
+                {
+                    _view.DataGridUpdate(w);
+                }
+            }
+
+            else
+            {
+                _wydarzenia = _repository.GetAll();
+                _view.DataGridClear();
+                foreach (var w in _wydarzenia)
+                {
+                    _view.DataGridUpdate(w);
+                }
+            }
+
+
         }
 
     }

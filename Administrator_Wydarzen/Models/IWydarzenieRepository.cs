@@ -12,11 +12,12 @@ namespace Administrator_Wydarzen.Models
         void Delete(int index);
 
         void Serialize(string path);
-
         void Clear();
+        IEnumerable<Wydarzenie> GetAll();
         IEnumerable<Wydarzenie> Deserialize(string path);
         IEnumerable<Wydarzenie> SortByType(string type);
-        // IEnumerable<Wydarzenie> FiltrByType(IEnumerable<Wydarzenie> wydarzenia, string type);
-
+        IEnumerable<Wydarzenie> FiltrByType(string filtrText);
+        IEnumerable<Wydarzenie> FiltrByPrior(string filtrText);
+        IEnumerable<Wydarzenie> FiltrByDate(string filtrText);
     }
 }

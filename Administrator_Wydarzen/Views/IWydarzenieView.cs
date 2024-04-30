@@ -15,14 +15,19 @@ namespace Administrator_Wydarzen.Views
         string Type { get; }
         string Priority { get;}
         string SortType { get; }
-        string FiltrType { get; }
+        string FiltrType { get; set; }
+        string FiltrPrior { get; set; }
+        string FiltrDate { get; set; }
+        
 
         event EventHandler AddWydarzenie;
         event EventHandler DeleteWydarzenie;
         event EventHandler SerializeWydarzenie;
         event EventHandler DeserializeWydarzenie;
         event EventHandler SortWydarzenie;
-        event EventHandler FiltrWydarzenie;
+        event EventHandler FiltrWydarzenieByType;
+        event EventHandler FiltrWydarzenieByPrior;
+        event EventHandler FiltrWydarzenieByDate;
 
         bool SetErrorTitleBox();
         bool SetErrorDescrBox();
@@ -30,7 +35,6 @@ namespace Administrator_Wydarzen.Views
         bool SetErrorPriorityBox();
 
         bool SetErrorSortBox();
-        bool SetErrorFiltrBox();
 
         void DataGridUpdate(Wydarzenie wydarzenie);
         void DataGridClear();
