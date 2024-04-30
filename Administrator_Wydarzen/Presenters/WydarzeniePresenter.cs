@@ -154,7 +154,8 @@ namespace Administrator_Wydarzen.Presenters
                     _view.DataGridUpdate(w);
                 }
             }
-            
+
+            _view.FiltrType = "";
 
         }
 
@@ -184,7 +185,7 @@ namespace Administrator_Wydarzen.Presenters
                     _view.DataGridUpdate(w);
                 }
             }
-
+            _view.FiltrPrior = "";
 
 
         }
@@ -215,7 +216,7 @@ namespace Administrator_Wydarzen.Presenters
                 }
             }
 
-
+            _view.FiltrDate = "";
         }
 
     }

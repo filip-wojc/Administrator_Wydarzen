@@ -10,11 +10,11 @@ namespace Administrator_Wydarzen.Models
     {
         void Add(Wydarzenie wydarzenie);
         void Delete(int index);
-
-        void Serialize(string path);
         void Clear();
         IEnumerable<Wydarzenie> GetAll();
+        void Serialize(string path);
         IEnumerable<Wydarzenie> Deserialize(string path);
+  
         IEnumerable<Wydarzenie> SortByType(string type);
         IEnumerable<Wydarzenie> FiltrByType(string filtrText);
         IEnumerable<Wydarzenie> FiltrByPrior(string filtrText);
